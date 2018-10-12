@@ -12,16 +12,19 @@
     
         <meta name="keywords" content="hexo搭建博客" />
     
-    <meta name="keywords" content="hexo搭建博客">
+    <meta name="description" content="前言整个博客的搭建方法，均是参考此篇博文进行搭建，其中前面的讲解非常详细，由于我的电脑已经有git和node.js的环境，所以我是直接从安装hexo开始，到绑定域名结束。博主写的挺好的，适合小白从零搭建我在此总结下自己搭建的时候一些操作与问题记录 各种文档 张小花的博客（参考此博文搭建博客的） hexo hexo的官方文档，里面也有些命令行的讲解，适当的查看文档也是非常有帮助 hueman主题h">
+<meta name="keywords" content="hexo搭建博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习用hexo搭建博客">
 <meta property="og:url" content="http://doraqiao.top/2018/10/10/学习用hexo搭建博客/index.html">
 <meta property="og:site_name" content="daraqiao.blog">
+<meta property="og:description" content="前言整个博客的搭建方法，均是参考此篇博文进行搭建，其中前面的讲解非常详细，由于我的电脑已经有git和node.js的环境，所以我是直接从安装hexo开始，到绑定域名结束。博主写的挺好的，适合小白从零搭建我在此总结下自己搭建的时候一些操作与问题记录 各种文档 张小花的博客（参考此博文搭建博客的） hexo hexo的官方文档，里面也有些命令行的讲解，适当的查看文档也是非常有帮助 hueman主题h">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://doraqiao.top/css/images/desk.jpg">
-<meta property="og:updated_time" content="2018-10-12T07:27:36.275Z">
+<meta property="og:updated_time" content="2018-10-12T10:05:26.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习用hexo搭建博客">
+<meta name="twitter:description" content="前言整个博客的搭建方法，均是参考此篇博文进行搭建，其中前面的讲解非常详细，由于我的电脑已经有git和node.js的环境，所以我是直接从安装hexo开始，到绑定域名结束。博主写的挺好的，适合小白从零搭建我在此总结下自己搭建的时候一些操作与问题记录 各种文档 张小花的博客（参考此博文搭建博客的） hexo hexo的官方文档，里面也有些命令行的讲解，适当的查看文档也是非常有帮助 hueman主题h">
 <meta name="twitter:image" content="http://doraqiao.top/css/images/desk.jpg">
     
 
@@ -174,7 +177,48 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="/css/images/desk.jpg" alt="cover"></p>
+            <p><img src="/css/images/desk.jpg" alt="blog view"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>整个博客的搭建方法，均是参考<a href="http://visugar.com/2017/05/04/20170504SetUpHexoBlog/" target="_blank" rel="noopener">此篇博文</a>进行搭建，其中前面的讲解非常详细，由于我的电脑已经有git和node.js的环境，所以我是直接从安装hexo开始，到绑定域名结束。<br><br>博主写的挺好的，适合小白从零搭建<br><br>我在此总结下自己搭建的时候一些操作与问题记录<br></p>
+<h2 id="各种文档"><a href="#各种文档" class="headerlink" title="各种文档"></a>各种文档</h2><ul>
+<li><a href="http://visugar.com/2017/05/04/20170504SetUpHexoBlog/" target="_blank" rel="noopener">张小花的博客</a>（参考此博文搭建博客的）</li>
+<li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo</a> hexo的官方文档，里面也有些命令行的讲解，适当的查看文档也是非常有帮助</li>
+<li><a href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">hueman主题</a>hexo里面的一个主题，张小花博主用的是这个主题，我刚开始搭建，所以也参照博主用这个；里面也有对应的说明，详情看其<a href="https://github.com/ppoffice/hexo-theme-hueman/wiki" target="_blank" rel="noopener">wiki</a></li>
+<li>关于markdown语法的文档，请搜索引擎寻找~</li>
+</ul>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$npm i -g hexo</span><br></pre></td></tr></table></figure>
+<p>（对于linux小白:请输入上面的命令时不要输入$,从$后面的内容开始输入，同下）<br>嫌npm慢者可以用cnpm <a href="http://npm.taobao.org/" target="_blank" rel="noopener">安装地址</a> <br><br>查看hexo的版本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$hexo -v</span><br></pre></td></tr></table></figure></p>
+<p>初始化hexo命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$hexo init</span><br></pre></td></tr></table></figure></p>
+<p>初始化之后可以看到：blog文件夹下面有这些东西 <br><br><img src="/css/images/buildHexo-01.jpg" alt="blog folder"><br>解释下图片中对应的文件作用： <br></p>
+<ul>
+<li>node_modules：是依赖包</li>
+<li>public：存放的是生成的页面</li>
+<li>scaffolds：命令生成文章等的模板</li>
+<li>source：用命令创建的各种文章</li>
+<li>themes：主题</li>
+<li>_config.yml：整个博客的配置</li>
+<li>db.json：source解析所得到的</li>
+<li>package.json：项目所需模块项目的配置信息</li>
+</ul>
+<h2 id="生成SSH并添加到github"><a href="#生成SSH并添加到github" class="headerlink" title="生成SSH并添加到github"></a>生成SSH并添加到github</h2><p>进入github -&gt; new repository -&gt; 填写各种信息（其中doraqiao是我github的名称，请更改为自己的github名称才生效；description是描述，可以填写一些描述，也可以后期补上）<br><br><img src="/css/images/buildHexo-02.jpg" alt="github view"></p>
+<p>上面配置完毕后，在<strong>gitbash</strong>上配置github账户信息：（name和email请换成你自己的github name 和邮箱）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$git config --global user.name &quot;YourName&quot;</span><br><span class="line">$git config --global user.email &quot;YourEmail&quot;</span><br></pre></td></tr></table></figure></p>
+<p>上述完成后，生成SSH：(输入github邮箱账号)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</span><br></pre></td></tr></table></figure></p>
+<p>然后找到id_rsa.pub文件的内容，获取的内容就是我们需要的ssh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$cd ~/.ssh</span><br><span class="line">$cat id_rsa.pub</span><br></pre></td></tr></table></figure></p>
+<p>将文件内容放到github上 <br><br><img src="/css/images/buildHexo-03.jpg" alt="setting"><br><br><img src="/css/images/buildHexo-04.jpg" alt="ssh"><br><br>点击 <strong>new ssh key</strong>   <br><br>title可以填blog（方便以后辨识），也可以自己取<br><br>key就把文件的内容放进来</p>
+<p>添加后，验证是否添加成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
+<p>如图所示：表示添加成功<br><br><img src="/css/images/buildHexo-05.jpg" alt="success"><br></p>
+<h2 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h2><p>在<strong>根</strong>目录下的 <strong>_config.yml</strong> 文件进行配置：（冒号之后都是有一个半角空格的）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/YourName/YourName.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<p>配置之后，进入blog目录，执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$hexo clean</span><br><span class="line">$hexo generate</span><br><span class="line">$hexo server</span><br></pre></td></tr></table></figure></p>
+<p>执行完毕之后，在浏览器输入：<strong><a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a></strong><br>就可以看到你的博客啦！</p>
+<h2 id="上传到github"><a href="#上传到github" class="headerlink" title="上传到github"></a>上传到github</h2><p>让你写好的文章部署到github上并让别人浏览，所以需要安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p>然后再执行此命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$hexo clean</span><br><span class="line">$hexo generate</span><br><span class="line">$hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>ps:deploy的过程中需要输入你的username和password<br>最后，在浏览器中输入<strong><a href="http://yourgithubname.github.io" target="_blank" rel="noopener">http://yourgithubname.github.io</a></strong> 就可以看到个人博客</p>
+<h2 id="绑定个人域名"><a href="#绑定个人域名" class="headerlink" title="绑定个人域名"></a>绑定个人域名</h2><ul>
+<li>先购买域名啦！我是在万网购买的域名啦，<a href="https://wanwang.aliyun.com/domain/?spm=5176.74069.1001.1.1abbad11I6QDwx" target="_blank" rel="noopener">附上地址</a></li>
+<li>添加CNAME：在根目录下source文件夹新建一个名为CNAME的文件（没有后缀），里面添加购买的域名，只能添加一个（如我添加的是doraqiao.top）</li>
+<li>在dns解析里面，添加一条记录，其中ip为你的github地址（在cmd中ping获取）<br><img src="/css/images/buildHexo-06.jpg" alt="success"><br></li>
+</ul>
+<p>最后再次执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$hexo clean</span><br><span class="line">$hexo g</span><br><span class="line">$hexo d</span><br></pre></td></tr></table></figure></p>
+<p>然后用域名打开，就可以看到博客啦！</p>
 
         </div>
         <footer class="article-footer">
