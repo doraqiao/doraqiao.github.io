@@ -21,7 +21,7 @@
 <meta property="og:description" content="vue打包问题 打包路径问题  由于打包之后，是被压缩成status文件夹和index.html，所以在路径方面有一定的差异；所以打包之前需要在config&amp;gt;index.js文件下修改build下的（红标部分）;加个小点表示相对路径，不加表示绝对路径。   打包后图片的路径问题：  在开发的时候，在img和background的图片引入中，将路径使用绝对路径来引用，即/static/……；">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://doraqiao.top/css/images/img_1724.jpg">
-<meta property="og:updated_time" content="2018-10-29T08:24:05.232Z">
+<meta property="og:updated_time" content="2018-10-29T08:34:04.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用vue开发项目时所遇到的问题">
 <meta name="twitter:description" content="vue打包问题 打包路径问题  由于打包之后，是被压缩成status文件夹和index.html，所以在路径方面有一定的差异；所以打包之前需要在config&amp;gt;index.js文件下修改build下的（红标部分）;加个小点表示相对路径，不加表示绝对路径。   打包后图片的路径问题：  在开发的时候，在img和background的图片引入中，将路径使用绝对路径来引用，即/static/……；">
@@ -181,14 +181,14 @@
 <h2 id="vue打包问题"><a href="#vue打包问题" class="headerlink" title="vue打包问题"></a>vue打包问题</h2><ul>
 <li><p>打包路径问题</p>
 <ul>
-<li>由于打包之后，是被压缩成status文件夹和index.html，所以在路径方面有一定的差异；所以打包之前需要在config&gt;index.js文件下修改build下的（红标部分）;加个小点表示相对路径，不加表示绝对路径。<br><img src="/css/image/vue_img01.png" alt="vue"></li>
+<li>由于打包之后，是被压缩成status文件夹和index.html，所以在路径方面有一定的差异；所以打包之前需要在config&gt;index.js文件下修改build下的（红标部分）;加个小点表示相对路径，不加表示绝对路径。<br><img src="/css/images/vue_img01.png" alt="修改build下的（红标部分）"></li>
 </ul>
 </li>
 <li><p>打包后图片的路径问题：</p>
 <ul>
 <li>在开发的时候，在img和background的图片引入中，将路径使用绝对路径来引用，即/static/……；这样在打包之后，图片路径会直接指向根路径，导致图片路径错误；所以在开发的过程中，图片的路径最好使用相对路径，在打包的过程中会自动转换，在打包之后就不会出现图片路径问题；</li>
 <li>在background中，使用以上方法引图片时，build之后如果出现路径名的不对，可以使用如下方式：正确配置后既可以正确引用<ul>
-<li>在build&gt;util.js下找到：<br><img src="/css/image/vue_img02.png" alt="vue"></li>
+<li>在build&gt;util.js下找到：<br><img src="/css/images/vue_img02.png" alt="util.js"></li>
 <li>添加红色框中的内容即可</li>
 </ul>
 </li>
