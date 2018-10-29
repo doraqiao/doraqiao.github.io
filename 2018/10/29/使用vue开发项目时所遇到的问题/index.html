@@ -6,20 +6,26 @@
     
 
     
-    <title>daraqiao.blog</title>
+    <title>使用vue开发项目时所遇到的问题 | daraqiao.blog</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="哆啦巧的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="daraqiao.blog">
-<meta property="og:url" content="http://doraqiao.top/index.html">
+        <meta name="keywords" content="vue" />
+    
+    <meta name="description" content="vue打包问题 打包路径问题  由于打包之后，是被压缩成status文件夹和index.html，所以在路径方面有一定的差异；所以打包之前需要在config&amp;gt;index.js文件下修改build下的（红标部分）;加个小点表示相对路径，不加表示绝对路径。   打包后图片的路径问题：  在开发的时候，在img和background的图片引入中，将路径使用绝对路径来引用，即/static/……；">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用vue开发项目时所遇到的问题">
+<meta property="og:url" content="http://doraqiao.top/2018/10/29/使用vue开发项目时所遇到的问题/index.html">
 <meta property="og:site_name" content="daraqiao.blog">
-<meta property="og:description" content="哆啦巧的博客">
+<meta property="og:description" content="vue打包问题 打包路径问题  由于打包之后，是被压缩成status文件夹和index.html，所以在路径方面有一定的差异；所以打包之前需要在config&amp;gt;index.js文件下修改build下的（红标部分）;加个小点表示相对路径，不加表示绝对路径。   打包后图片的路径问题：  在开发的时候，在img和background的图片引入中，将路径使用绝对路径来引用，即/static/……；">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://doraqiao.top/css/images/img_1724.jpg">
+<meta property="og:updated_time" content="2018-10-29T08:24:05.232Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="daraqiao.blog">
-<meta name="twitter:description" content="哆啦巧的博客">
+<meta name="twitter:title" content="使用vue开发项目时所遇到的问题">
+<meta name="twitter:description" content="vue打包问题 打包路径问题  由于打包之后，是被压缩成status文件夹和index.html，所以在路径方面有一定的差异；所以打包之前需要在config&amp;gt;index.js文件下修改build下的（红标部分）;加个小点表示相对路径，不加表示绝对路径。   打包后图片的路径问题：  在开发的时候，在img和background的图片引入中，将路径使用绝对路径来引用，即/static/……；">
+<meta name="twitter:image" content="http://doraqiao.top/css/images/img_1724.jpg">
     
 
     
@@ -132,133 +138,147 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">主页</em>
+    <a class="page-title-link" href="/categories/vue/">vue</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-使用vue开发项目时所遇到的问题" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/10/29/使用vue开发项目时所遇到的问题/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/css/images/img_1724.jpg)" alt="使用vue开发项目时所遇到的问题" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://doraqiao.top/2018/10/29/使用vue开发项目时所遇到的问题/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/vue/">vue</a>
-            </div>
-            <div class="date"><time datetime="2018-10-29T03:44:39.000Z" itemprop="datePublished">2018-10-29</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2018/10/29/使用vue开发项目时所遇到的问题/">使用vue开发项目时所遇到的问题</a>
+        使用vue开发项目时所遇到的问题
         </h1>
     
 
-        <p class="article-excerpt">
-            
-vue打包问题
-打包路径问题
-
-由于打包之后，是被压缩成status文件夹和index.html，所以在路径方面有一定的差异；所以打包之前需要在config&gt;index.js文件下修改build下的（红标部分）;加个小点表示相对路径，不加表示绝对路径。
-
-
-打包后图片的路径问题：
-
-在开发的时候，在img和background的图片引入中，将路径使用绝对路径来引用，即/static/……；
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/10/29/使用vue开发项目时所遇到的问题/" class="article-date">
+            <time datetime="2018-10-29T03:44:39.000Z" itemprop="datePublished">2018-10-29</time>
+        </a>
     </div>
-</article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/10/10/学习用hexo搭建博客/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/css/images/desk.jpg)" alt="学习用hexo搭建博客" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://doraqiao.top/2018/10/10/学习用hexo搭建博客/">0</span>
-    
-</span>
+		
 
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/vue/">vue</a>
+    </div>
 
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/搭建博客/">搭建博客</a>
             </div>
-            <div class="date"><time datetime="2018-10-10T09:46:17.000Z" itemprop="datePublished">2018-10-10</time></div>
-        </div>
         
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/10/10/学习用hexo搭建博客/">学习用hexo搭建博客</a>
-        </h1>
-    
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/css/images/img_1724.jpg" alt="敦煌"></p>
+<h2 id="vue打包问题"><a href="#vue打包问题" class="headerlink" title="vue打包问题"></a>vue打包问题</h2><ul>
+<li><p>打包路径问题</p>
+<ul>
+<li>由于打包之后，是被压缩成status文件夹和index.html，所以在路径方面有一定的差异；所以打包之前需要在config&gt;index.js文件下修改build下的（红标部分）;加个小点表示相对路径，不加表示绝对路径。<br><img src="/css/image/vue_img01.png" alt="vue"></li>
+</ul>
+</li>
+<li><p>打包后图片的路径问题：</p>
+<ul>
+<li>在开发的时候，在img和background的图片引入中，将路径使用绝对路径来引用，即/static/……；这样在打包之后，图片路径会直接指向根路径，导致图片路径错误；所以在开发的过程中，图片的路径最好使用相对路径，在打包的过程中会自动转换，在打包之后就不会出现图片路径问题；</li>
+<li>在background中，使用以上方法引图片时，build之后如果出现路径名的不对，可以使用如下方式：正确配置后既可以正确引用<ul>
+<li>在build&gt;util.js下找到：<br><img src="/css/image/vue_img02.png" alt="vue"></li>
+<li>添加红色框中的内容即可</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>报错：The data property “show” is already declared as a prop. Use prop default value instead.<br>原因：是因为 组件里传进去的参数又在data 里面定义过，然后报错；即在props里有，又在data中定义了，造成冲突；所以将data中定义的删除即可；</p>
+</li>
+<li><p>引入axios</p>
+<ul>
+<li>很多人引用axios之前都会引用vue-axios，其实不需要引入vue-axios。vue官方文档也更加推荐使用axios来使用ajax；安装vue-axios是为了让axios可以全局使用，下面这个方法也可以让axios全局使用</li>
+<li>使用 <strong>Vue.prototype.$axios = axios</strong> 来全局引用即可，调用时直接<strong>this.$axios</strong>即可</li>
+<li><strong>axios.defaults.baseURL = ‘’</strong> 设置接口地址的前缀</li>
+</ul>
+</li>
+<li><p>控制v-for里面显示某个数据：在使用v-for的标签里 加上v-if的判断语句</p>
+</li>
+</ul>
+<p>目前所遇到的问题暂时是这些啦，后续如果有更多的问题会上来更新！本人小白渣渣，如有错漏请提出，谢谢~</p>
 
-        <p class="article-excerpt">
+        </div>
+        <footer class="article-footer">
             
-前言整个博客的搭建方法，均是参考此篇博文进行搭建，其中前面的讲解非常详细，由于我的电脑已经有git和node.js的环境，所以我是直接从安装hexo开始，到绑定域名结束。博主写的挺好的，适合小白从零搭建我在此总结下自己搭建的时候一些操作与问题记录
-各种文档
-张小花的博客（参考此博文搭建博客的）
-hexo hexo的官方文档，里面也有些命令行的讲解，适当的查看文档也是非常有帮助
-hueman主题h
-        </p>
+    <div class="jiathis_style">
+    <!--先不要分享按钮-->
+    <!--  <span class="jiathis_txt">分享到：</span>
+      <a class="jiathis_button_qzone" href="">QQ空间</a>
+      <a class="jiathis_button_tsina">新浪微博</a>
+      <a class="jiathis_button_tqq">腾讯微博</a>
+      <a class="jiathis_button_weixin">微信</a>
+      <a href="//www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+      <a class="jiathis_counter_style"></a>-->
+</div>
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
     </div>
 </article>
-    
-        </div>
-    
 
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 
-    </div></section>
+    
+    </section>
 
 
 
@@ -280,6 +300,19 @@ hueman主题h
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/10/10/学习用hexo搭建博客/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">学习用hexo搭建博客</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -428,11 +461,13 @@ hueman主题h
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://doraqiao.top/2018/10/29/使用vue开发项目时所遇到的问题/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
