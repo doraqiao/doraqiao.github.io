@@ -21,7 +21,7 @@
 <meta property="og:description" content="前言作为一个小白技术渣渣，适当的锻炼下算法的能力也是非常有必要的！刷题过程中会发现一个题目多种解题方式，算是给自己提供不同的思路吧！LeetCode官方称题目刷三遍当然是最好的啦，毕竟每次做题都是不一样的收获。当然不要死记硬背答案，因为答案不唯一！ 从数组删除重复项给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://doraqiao.top/css/images/img_arithmetic.jpg">
-<meta property="og:updated_time" content="2018-11-13T10:30:27.339Z">
+<meta property="og:updated_time" content="2018-11-14T03:16:07.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetCode题目之初级算法-数组">
 <meta name="twitter:description" content="前言作为一个小白技术渣渣，适当的锻炼下算法的能力也是非常有必要的！刷题过程中会发现一个题目多种解题方式，算是给自己提供不同的思路吧！LeetCode官方称题目刷三遍当然是最好的啦，毕竟每次做题都是不一样的收获。当然不要死记硬背答案，因为答案不唯一！ 从数组删除重复项给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原">
@@ -208,7 +208,8 @@
 <li>如果 nums1 的大小比 nums2 小很多，哪种方法更优？</li>
 <li>如果 nums2 的元素存储在磁盘上，磁盘内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？</li>
 </ul>
-<p>我的解答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//普通版</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//进阶版</span><br></pre></td></tr></table></figure></p>
+<p>我的解答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//普通版</span><br><span class="line">var intersect = function(nums1, nums2) &#123;</span><br><span class="line">    let temp = &#123;&#125;</span><br><span class="line">    let newArr = [];</span><br><span class="line">    for(let i=0;i&lt;nums1.length;i++)&#123;</span><br><span class="line">        if(nums1[i] in temp)&#123;</span><br><span class="line">            temp[nums1[i]] += 1;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            temp[nums1[i]] = 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(let j in nums2)&#123;</span><br><span class="line">        if(temp[nums2[j]] &gt;0)&#123;</span><br><span class="line">            newArr.push(nums2[j])</span><br><span class="line">            temp[nums2[j]] -= 1</span><br><span class="line">         &#125;</span><br><span class="line">        /*if(nums2[j] in temp)&#123;</span><br><span class="line">            newArr.push(nums2[j])</span><br><span class="line">            if(temp[nums2[j]] &gt;1)&#123;</span><br><span class="line">                temp[nums2[j]] -= 1</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                delete temp[nums2[j]]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;*/</span><br><span class="line">    &#125;</span><br><span class="line">    return newArr</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>别人的解答：（思路一致，但是更加简洁）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let intersect = function(nums1, nums2) &#123;</span><br><span class="line">    let res = [];</span><br><span class="line">    let map = &#123;&#125;;</span><br><span class="line">    for (let e of nums1) &#123;</span><br><span class="line">        map[e] = map[e] + 1 || 1;</span><br><span class="line">    &#125;</span><br><span class="line">    for (let e of nums2) &#123;</span><br><span class="line">        if (map[e]) &#123;</span><br><span class="line">            res.push(e);</span><br><span class="line">            map[e]--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h3 id="加一"><a href="#加一" class="headerlink" title="加一"></a>加一</h3><p>给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。<br>最高位数字存放在数组的首位， 数组中每个元素只存储一个数字。<br>你可以假设除了整数 0 之外，这个整数不会以零开头。</p>
 <p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,2,3]</span><br><span class="line">输出: [1,2,4]</span><br><span class="line">解释: 输入数组表示数字 123。</span><br></pre></td></tr></table></figure></p>
 <p>示例 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [4,3,2,1]</span><br><span class="line">输出: [4,3,2,2]</span><br><span class="line">解释: 输入数组表示数字 4321。</span><br></pre></td></tr></table></figure></p>
@@ -320,6 +321,16 @@
         
 <nav id="article-nav">
     
+        <a href="/2018/11/14/leetCode题目之初级算法-字符串/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            leetCode题目之初级算法-字符串
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
     
         <a href="/2018/10/29/使用vue开发项目时所遇到的问题/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
@@ -341,6 +352,26 @@
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/14/leetCode题目之初级算法-字符串/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/2018/11/14/leetCode题目之初级算法-字符串/" class="title">leetCode题目之初级算法-字符串</a></p>
+                            <p class="item-date"><time datetime="2018-11-14T03:42:49.000Z" itemprop="datePublished">2018-11-14</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -411,7 +442,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/vue/">vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建博客/">搭建博客</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/vue/">vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建博客/">搭建博客</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -421,7 +452,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -431,7 +462,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/hexo搭建博客/" style="font-size: 10px;">hexo搭建博客</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+            <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/hexo搭建博客/" style="font-size: 10px;">hexo搭建博客</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a>
         </div>
     </div>
 
