@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>封装axios和统一管理api接口 | daraqiao.blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="vue,axios" />
+    
+    <meta name="description" content="axios的封装和api接口的统一管理，主要目的就是在帮助我们简化代码和利于后期的更新维护不建议直接复制使用，先理解原理然后再根据实际项目情况写属于自己的axios封装   封装axios新建一个request文件夹，然后在这里面新建一个http.js文件，用来封装我们的axios。（接口用另外一个js文件管理，是因为如果出现接口域名有多个的情况，方便管理。api挂载到vue.prototype上">
+<meta name="keywords" content="vue,axios">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封装axios和统一管理api接口">
+<meta property="og:url" content="http://doraqiao.top/2018/12/29/封装axios和统一管理api接口/index.html">
+<meta property="og:site_name" content="daraqiao.blog">
+<meta property="og:description" content="axios的封装和api接口的统一管理，主要目的就是在帮助我们简化代码和利于后期的更新维护不建议直接复制使用，先理解原理然后再根据实际项目情况写属于自己的axios封装   封装axios新建一个request文件夹，然后在这里面新建一个http.js文件，用来封装我们的axios。（接口用另外一个js文件管理，是因为如果出现接口域名有多个的情况，方便管理。api挂载到vue.prototype上">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://doraqiao.top/css/images/axiosImage.jpg">
+<meta property="og:updated_time" content="2019-01-03T04:10:44.400Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="封装axios和统一管理api接口">
+<meta name="twitter:description" content="axios的封装和api接口的统一管理，主要目的就是在帮助我们简化代码和利于后期的更新维护不建议直接复制使用，先理解原理然后再根据实际项目情况写属于自己的axios封装   封装axios新建一个request文件夹，然后在这里面新建一个http.js文件，用来封装我们的axios。（接口用另外一个js文件管理，是因为如果出现接口域名有多个的情况，方便管理。api挂载到vue.prototype上">
+<meta name="twitter:image" content="http://doraqiao.top/css/images/axiosImage.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/board">更新日志</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于我</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/vue/">vue</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-封装axios和统一管理api接口" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        封装axios和统一管理api接口
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/29/封装axios和统一管理api接口/" class="article-date">
+            <time datetime="2018-12-29T11:00:00.000Z" itemprop="datePublished">2018-12-29</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/axios/">axios</a>, <a class="tag-link" href="/tags/vue/">vue</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/css/images/axiosImage.jpg" alt=""><br>axios的封装和api接口的统一管理，主要目的就是在帮助我们简化代码和利于后期的更新维护<br>不建议直接复制使用，先理解原理然后再根据实际项目情况写属于自己的axios封装  </p>
+<h3 id="封装axios"><a href="#封装axios" class="headerlink" title="封装axios"></a>封装axios</h3><p>新建一个request文件夹，然后在这里面新建一个http.js文件，用来封装我们的axios。（接口用另外一个js文件管理，是因为如果出现接口域名有多个的情况，方便管理。api挂载到vue.prototype上面可以省去引入的步骤）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* axios 封装</span></span><br><span class="line"><span class="comment">* 请求拦截、相应拦截、错误统一处理</span></span><br><span class="line"><span class="comment">* toast是引用mint-ui的，用于提示信息，可自行修改</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">import</span> &#123;Toast&#125; <span class="keyword">from</span> <span class="string">'mint-ui'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'mint-ui/lib/toast/style.css'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*提示函数*/</span></span><br><span class="line"><span class="keyword">const</span> tip = <span class="function"><span class="params">msg</span>=&gt;</span>&#123;</span><br><span class="line">    Toast(&#123;</span><br><span class="line">        message:msg,</span><br><span class="line">        duration: <span class="number">2500</span>,</span><br><span class="line">        forbidClick: <span class="literal">true</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 请求失败后的错误统一处理</span></span><br><span class="line"><span class="comment">* 状态码根据实际需求来写内容，这里是简写，方便理解</span></span><br><span class="line"><span class="comment">* @param &#123;Number&#125; status 请求失败的状态码</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> errorHandle = <span class="function">(<span class="params">status,msg</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span>(status) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">401</span>:</span><br><span class="line">        tip(msg)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">403</span>:</span><br><span class="line">        tip(msg)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">404</span>:</span><br><span class="line">        tip(msg)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">500</span>:</span><br><span class="line">        tip(msg)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">        tip(msg)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*创建axios实例 */</span></span><br><span class="line"><span class="keyword">var</span> instance = axios.create(&#123;<span class="attr">timeout</span>:<span class="number">1000</span>*<span class="number">12</span>&#125;)</span><br><span class="line"><span class="comment">/*设置post请求头*/</span></span><br><span class="line">instance.defaults.headers.post[<span class="string">'Content-Type'</span>]=<span class="string">'application/x-www-form-urlencoded'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 请求拦截器</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">instance.interceptors.request.use(</span><br><span class="line">    config =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> config;</span><br><span class="line">    &#125;,</span><br><span class="line">    error =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.error(error);</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*响应拦截器</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">instance.interceptors.response.use(</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    res =&gt;&#123;</span><br><span class="line">        <span class="keyword">return</span> res.status === <span class="number">200</span> ? <span class="built_in">Promise</span>.resolve(res.data) : <span class="built_in">Promise</span>.reject(res)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//请求失败</span></span><br><span class="line">    error =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; response &#125; = error;</span><br><span class="line">        errorHandle(response.status,response.data.msg)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(response)</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> instance</span><br></pre></td></tr></table></figure></p>
+<p>以上的代码就是我们封装好的axios。在需要使用的时候直接调用这个js文件，方便管理。</p>
+<h3 id="api接口模块管理"><a href="#api接口模块管理" class="headerlink" title="api接口模块管理"></a>api接口模块管理</h3><p>新建一个api文件夹，一个index.js 、 base.js和多个根据模块划分的接口；index.js是一个api的出口，base.js是管理接口域名。  </p>
+<p>index.js：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* api接口的统一出口</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//xxx模块接口</span></span><br><span class="line"><span class="keyword">import</span> demo <span class="keyword">from</span> <span class="string">'./demo'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//导出接口</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    demo,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>base.js来管理我们的接口域名，不管有多少个都可以通过这里进行接口的定义。即使修改起来，也是很方便的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 接口域名的管理</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> base = &#123;</span><br><span class="line">    urlPre1:<span class="string">'http://xxx.com/xxx'</span>, <span class="comment">//测试地址</span></span><br><span class="line">    urlPre2:<span class="string">'http://xxx.com/xxx2'</span>, <span class="comment">//测试地址2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> base;</span><br></pre></td></tr></table></figure></p>
+<p>接口模块中的js示例：</p>
+<ol>
+<li>通过直接引入我们封装好的axios实例，然后定义接口、调用axios实例并返回，可以更灵活的使用axios</li>
+<li>请求的配置更灵活，可以针对某个需求进行一个不同的配置。<br>如demo.js：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* demo模块接口列表</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> base <span class="keyword">from</span> <span class="string">'./base'</span>;<span class="comment">//导入接口域名列表</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'@/request/http'</span>; <span class="comment">//导入http中创建的axios实例,即封装好的axios</span></span><br><span class="line"><span class="keyword">import</span> Qs <span class="keyword">from</span> <span class="string">'qs'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> demo = &#123;</span><br><span class="line">    <span class="comment">//获取demo信息</span></span><br><span class="line">    getDemo()&#123;</span><br><span class="line">        <span class="keyword">return</span> axios(&#123;</span><br><span class="line">            method:<span class="string">'get'</span>,</span><br><span class="line">            url:base.urlPre1+<span class="string">'/demo'</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//新增demo信息</span></span><br><span class="line">    addDemo(params)&#123;</span><br><span class="line">        params = Qs.stringify(params)</span><br><span class="line">        <span class="keyword">return</span> axios(&#123;</span><br><span class="line">            method:<span class="string">'post'</span>,</span><br><span class="line">            url:base.urlPre1+<span class="string">'/distribution/addUserBank'</span>,</span><br><span class="line">            data:params</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> demo;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>最后在main.js将api统一出口挂载在vue.prototype中（省去引入步骤）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> api <span class="keyword">from</span> <span class="string">'./api'</span></span><br><span class="line">Vue.prototype.$api = api</span><br></pre></td></tr></table></figure></p>
+<p>在需要使用axios的地方，直接调用$api即可<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$api.demo.getDemo().then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log(res)</span><br><span class="line">       &#125;).catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">         <span class="built_in">console</span>.log(e)</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <!--先不要分享按钮-->
+    <!--  <span class="jiathis_txt">分享到：</span>
+      <a class="jiathis_button_qzone" href="">QQ空间</a>
+      <a class="jiathis_button_tsina">新浪微博</a>
+      <a class="jiathis_button_tqq">腾讯微博</a>
+      <a class="jiathis_button_weixin">微信</a>
+      <a href="//www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+      <a class="jiathis_counter_style"></a>-->
+</div>
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/doraqiao/doraqiao.github.io" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/19/LeetCode题目之础计算法-数学/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">LeetCode题目之础计算法-数学</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/29/封装axios和统一管理api接口/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/axiosImage.jpg)" alt="封装axios和统一管理api接口" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/vue/">vue</a></p>
+                            <p class="item-title"><a href="/2018/12/29/封装axios和统一管理api接口/" class="title">封装axios和统一管理api接口</a></p>
+                            <p class="item-date"><time datetime="2018-12-29T11:00:00.000Z" itemprop="datePublished">2018-12-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/19/LeetCode题目之础计算法-数学/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/img_arithmetic_math.jpg)" alt="LeetCode题目之础计算法-数学" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/2018/12/19/LeetCode题目之础计算法-数学/" class="title">LeetCode题目之础计算法-数学</a></p>
+                            <p class="item-date"><time datetime="2018-12-19T09:05:52.000Z" itemprop="datePublished">2018-12-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/14/leetCode题目之初级算法-字符串/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/img_arithmetic_string.jpg)" alt="leetCode题目之初级算法-字符串" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/2018/11/14/leetCode题目之初级算法-字符串/" class="title">leetCode题目之初级算法-字符串</a></p>
+                            <p class="item-date"><time datetime="2018-11-14T03:42:49.000Z" itemprop="datePublished">2018-11-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/11/12/leetCode题目之初级算法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/img_arithmetic.jpg)" alt="leetCode题目之初级算法-数组" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/2018/11/12/leetCode题目之初级算法/" class="title">leetCode题目之初级算法-数组</a></p>
+                            <p class="item-date"><time datetime="2018-11-12T03:46:50.000Z" itemprop="datePublished">2018-11-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/10/29/使用vue开发项目时所遇到的问题/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/img_1724.jpg)" alt="使用vue开发项目时所遇到的问题" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/vue/">vue</a></p>
+                            <p class="item-title"><a href="/2018/10/29/使用vue开发项目时所遇到的问题/" class="title">使用vue开发项目时所遇到的问题</a></p>
+                            <p class="item-date"><time datetime="2018-10-29T03:44:39.000Z" itemprop="datePublished">2018-10-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/vue/">vue</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建博客/">搭建博客</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/hexo搭建博客/" style="font-size: 10px;">hexo搭建博客</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 doraqiao</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://doraqiao.top/2018/12/29/封装axios和统一管理api接口/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
